@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { checkInCategory, checkOutCategory } from "../services/api";
+import { updateCategoryName, checkInCategory, checkOutCategory } from "../services/api";
 
 interface TaskProps {
   task: {
@@ -11,6 +11,9 @@ interface TaskProps {
 
 const CategoryItem: React.FC<TaskProps> = ({ task: category }) => {
     const [isCheckedIn, setIsCheckedIn] = useState<boolean>(category.isCheckedIn);
+    const [newName, setNewName] = useState<string>(category.name); 
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [tasks, setTasks] = useState<any[]>([]);
 
   // Funktion för att checka in
   const handleCheckIn = async () => {
@@ -32,9 +35,41 @@ const CategoryItem: React.FC<TaskProps> = ({ task: category }) => {
     }
   };
 
+    // Funktion för att spara det nya namnet
+    const handleSaveName = async () => {
+      try {
+        const updatedCategory = await updateCategoryName(category.id.toString(), newName);
+
+        setTasks((prevTasks) =>
+          prevTasks.map((task) =>
+            task.id === updatedCategory.id ? { ...task, name: updatedCategory.name } : task
+          )
+        );
+
+        setIsEditing(false); 
+      } catch (error) {
+        console.error("Kunde inte uppdatera namnet:", error);
+      }
+    };
+
   return (
     <li>
-      {category.name}
+      {isEditing ? (
+        <div>
+          <input
+            type="text"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)} 
+          />
+          <button onClick={handleSaveName}>Spara</button>
+          <button onClick={() => setIsEditing(false)}>Avbryt</button>
+        </div>
+      ) : (
+        <div>
+          <span>{category.name}</span>
+          <button onClick={() => setIsEditing(true)}>Redigera namn</button>
+        </div>
+      )}
       <div>
         {isCheckedIn ? (
           <button onClick={handleCheckOut}>Checka ut</button>
