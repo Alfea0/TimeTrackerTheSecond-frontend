@@ -36,3 +36,31 @@ export const fetchStats = async () => {
     return 0;
   }
 };
+
+// Checkar in en arbetsuppgift
+export const checkInTask = async (taskId: number) => {
+    try {
+      const response = await fetch(`${API_URL}/tasks/${taskId}/checkin`, {
+        method: "POST",
+      });
+      if (!response.ok) throw new Error("Failed to check in task");
+      return response.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+  
+  // Checkar ut en arbetsuppgift
+  export const checkOutTask = async (taskId: number) => {
+    try {
+      const response = await fetch(`${API_URL}/tasks/${taskId}/checkout`, {
+        method: "POST",
+      });
+      if (!response.ok) throw new Error("Failed to check out task");
+      return response.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };

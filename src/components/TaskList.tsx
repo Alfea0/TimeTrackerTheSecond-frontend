@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchTasks, createTask } from "../services/api";
+import TaskItem from "./TaskItem";
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<any[]>([]);
@@ -34,6 +35,12 @@ const TaskList: React.FC = () => {
       />
       <button onClick={handleCreateTask}>Skapa uppgift</button>
 
+      <ul>
+        {tasks.map((task) => (
+          <TaskItem key={task.id} task={task} />
+        ))}
+      </ul>
+      
     </div>
   );
 };
