@@ -26,7 +26,7 @@ const TaskList: React.FC = () => {
 
   return (
     <div>
-      <h2>Arbetsuppgifter</h2>
+      <h2>Alla Kategorier</h2>
       <input
         type="text"
         value={newTask}

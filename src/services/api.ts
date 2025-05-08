@@ -40,7 +40,7 @@ export const fetchStats = async () => {
 // Checkar in en arbetsuppgift
 export const checkInTask = async (taskId: number) => {
     try {
-      const response = await fetch(`${API_URL}/tasks/${taskId}/checkin`, {
+      const response = await fetch(`${API_URL}/tasks/checkin/${taskId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check in task");
@@ -54,7 +54,7 @@ export const checkInTask = async (taskId: number) => {
   // Checkar ut en arbetsuppgift
   export const checkOutTask = async (taskId: number) => {
     try {
-      const response = await fetch(`${API_URL}/tasks/${taskId}/checkout`, {
+      const response = await fetch(`${API_URL}/tasks/checkout/${taskId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check out task");
