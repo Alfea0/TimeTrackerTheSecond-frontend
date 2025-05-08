@@ -1,9 +1,9 @@
 const API_URL = "http://localhost:8080/api";
 
-export const fetchTasks = async () => {
+export const fetchCategorys = async () => {
   try {
-    const response = await fetch(`${API_URL}/tasks`);
-    if (!response.ok) throw new Error("Failed to fetch tasks");
+    const response = await fetch(`${API_URL}/categorys`);
+    if (!response.ok) throw new Error("Failed to fetch categorys");
     return response.json();
   } catch (error) {
     console.error(error);
@@ -11,9 +11,9 @@ export const fetchTasks = async () => {
   }
 };
 
-export const createTask = async (name: string) => {
+export const createCategory = async (name: string) => {
   try {
-    const response = await fetch(`${API_URL}/tasks`, {
+    const response = await fetch(`${API_URL}/categorys`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
@@ -28,7 +28,7 @@ export const createTask = async (name: string) => {
 
 export const fetchStats = async () => {
   try {
-    const response = await fetch(`${API_URL}/tasks/stats/week`);
+    const response = await fetch(`${API_URL}/categorys/stats/week`);
     if (!response.ok) throw new Error("Failed to fetch stats");
     return response.json();
   } catch (error) {
@@ -38,9 +38,9 @@ export const fetchStats = async () => {
 };
 
 // Checkar in en arbetsuppgift
-export const checkInTask = async (taskId: number) => {
+export const checkInCategory = async (categoryId: number) => {
     try {
-      const response = await fetch(`${API_URL}/tasks/checkin/${taskId}`, {
+      const response = await fetch(`${API_URL}/categorys/checkin/${categoryId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check in task");
@@ -52,9 +52,9 @@ export const checkInTask = async (taskId: number) => {
   };
   
   // Checkar ut en arbetsuppgift
-  export const checkOutTask = async (taskId: number) => {
+  export const checkOutCategory = async (categoryId: number) => {
     try {
-      const response = await fetch(`${API_URL}/tasks/checkout/${taskId}`, {
+      const response = await fetch(`${API_URL}/categorys/checkout/${categoryId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check out task");
@@ -64,3 +64,28 @@ export const checkInTask = async (taskId: number) => {
       throw error;
     }
   };
+
+  // Hämta den totala arbetade tiden för veckan
+    export const fetchTotalWorkedMinutesForWeek = async () => {
+        try {
+        const response = await fetch(`${API_URL}/categorys/stats/week`);
+        if (!response.ok) throw new Error("Failed to fetch total worked minutes");
+        return response.json(); 
+        } catch (error) {
+        console.error(error);
+        return 0; 
+        }
+  };
+  
+  // Hämta arbetstiden per kategori för veckan
+    export const fetchWorkedMinutesPerCategory = async () => {
+        try {
+        const response = await fetch(`${API_URL}/categorys/stats/week/per-category`);
+        if (!response.ok) throw new Error("Failed to fetch stats per category");
+        return response.json(); 
+        } catch (error) {
+        console.error(error);
+        return {}; 
+        }
+  };
+  
