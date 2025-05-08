@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { checkInTask, checkOutTask } from "../services/api";
+import { checkInCategory, checkOutCategory } from "../services/api";
 
 interface TaskProps {
   task: {
@@ -9,13 +9,13 @@ interface TaskProps {
   };
 }
 
-const TaskItem: React.FC<TaskProps> = ({ task }) => {
-    const [isCheckedIn, setIsCheckedIn] = useState<boolean>(task.isCheckedIn);
+const CategoryItem: React.FC<TaskProps> = ({ task: category }) => {
+    const [isCheckedIn, setIsCheckedIn] = useState<boolean>(category.isCheckedIn);
 
   // Funktion för att checka in
   const handleCheckIn = async () => {
     try {
-      await checkInTask(task.id);
+      await checkInCategory(category.id);
       setIsCheckedIn(true);
     } catch (error) {
       console.error("Kunde inte checka in uppgiften:", error);
@@ -25,7 +25,7 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
   // Funktion för att checka ut
   const handleCheckOut = async () => {
     try {
-      await checkOutTask(task.id);
+      await checkOutCategory(category.id);
       setIsCheckedIn(false);
     } catch (error) {
       console.error("Kunde inte checka ut uppgiften:", error);
@@ -34,7 +34,7 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
 
   return (
     <li>
-      {task.name}
+      {category.name}
       <div>
         {isCheckedIn ? (
           <button onClick={handleCheckOut}>Checka ut</button>
@@ -46,4 +46,4 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
   );
 };
 
-export default TaskItem;
+export default CategoryItem;
