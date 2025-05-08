@@ -88,4 +88,25 @@ export const checkInCategory = async (categoryId: number) => {
         return {}; 
         }
   };
+
+  export const updateCategoryName = async (id: string, newName: string) => {
+    try {
+      const response = await fetch(`${API_URL}/categorys/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: newName, 
+        }),
+      });
+  
+      if (!response.ok) throw new Error("Failed to update category");
+  
+      return response.json(); 
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
   

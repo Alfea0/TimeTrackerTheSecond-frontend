@@ -1,6 +1,8 @@
 import React from "react";
 import CategoryList from "./components/CategoryList";
 import Stats from "./components/Stats";
+import './styles.css';
+
 
 const App: React.FC = () => {
   return (
