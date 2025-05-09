@@ -3,7 +3,7 @@ console.log("API_URL is:", API_URL);
 
 export const fetchCategorys = async () => {
   try {
-    const response = await fetch(`${API_URL}api/categorys`);
+    const response = await fetch(`${API_URL}/api/categorys`);
     if (!response.ok) throw new Error("Failed to fetch categorys");
     return response.json();
   } catch (error) {
@@ -14,7 +14,7 @@ export const fetchCategorys = async () => {
 
 export const createCategory = async (name: string) => {
   try {
-    const response = await fetch(`${API_URL}api/categorys`, {
+    const response = await fetch(`${API_URL}/api/categorys`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
@@ -29,7 +29,7 @@ export const createCategory = async (name: string) => {
 
 export const fetchStats = async () => {
   try {
-    const response = await fetch(`${API_URL}api/categorys/stats/week`);
+    const response = await fetch(`${API_URL}/api/categorys/stats/week`);
     if (!response.ok) throw new Error("Failed to fetch stats");
     return response.json();
   } catch (error) {
@@ -41,7 +41,7 @@ export const fetchStats = async () => {
 // Checkar in en arbetsuppgift
 export const checkInCategory = async (categoryId: number) => {
     try {
-      const response = await fetch(`${API_URL}api/categorys/checkin/${categoryId}`, {
+      const response = await fetch(`${API_URL}/api/categorys/checkin/${categoryId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check in task");
@@ -55,7 +55,7 @@ export const checkInCategory = async (categoryId: number) => {
   // Checkar ut en arbetsuppgift
   export const checkOutCategory = async (categoryId: number) => {
     try {
-      const response = await fetch(`${API_URL}api/categorys/checkout/${categoryId}`, {
+      const response = await fetch(`${API_URL}/api/categorys/checkout/${categoryId}`, {
         method: "POST",
       });
       if (!response.ok) throw new Error("Failed to check out task");
@@ -69,7 +69,7 @@ export const checkInCategory = async (categoryId: number) => {
   // Hämta den totala arbetade tiden för veckan
     export const fetchTotalWorkedMinutesForWeek = async () => {
         try {
-        const response = await fetch(`${API_URL}api/categorys/stats/week`);
+        const response = await fetch(`${API_URL}/api/categorys/stats/week`);
         if (!response.ok) throw new Error("Failed to fetch total worked minutes");
         return response.json(); 
         } catch (error) {
@@ -81,7 +81,7 @@ export const checkInCategory = async (categoryId: number) => {
   // Hämta arbetstiden per kategori för veckan
     export const fetchWorkedMinutesPerCategory = async () => {
         try {
-        const response = await fetch(`${API_URL}api/categorys/stats/week/per-category`);
+        const response = await fetch(`${API_URL}/api/categorys/stats/week/per-category`);
         if (!response.ok) throw new Error("Failed to fetch stats per category");
         return response.json(); 
         } catch (error) {
@@ -92,7 +92,7 @@ export const checkInCategory = async (categoryId: number) => {
 
   export const updateCategoryName = async (id: string, newName: string) => {
     try {
-      const response = await fetch(`${API_URL}api/categorys/${id}`, {
+      const response = await fetch(`${API_URL}/api/categorys/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
