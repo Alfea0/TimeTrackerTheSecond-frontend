@@ -13,7 +13,7 @@ const CategoryItem: React.FC<TaskProps> = ({ task: category }) => {
     const [isCheckedIn, setIsCheckedIn] = useState<boolean>(category.isCheckedIn);
     const [newName, setNewName] = useState<string>(category.name); 
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    const [tasks, setTasks] = useState<any[]>([]);
+    const [, setTasks] = useState<any[]>([]);
 
   // Funktion för att checka in
   const handleCheckIn = async () => {
