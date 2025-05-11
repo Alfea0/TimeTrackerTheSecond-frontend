@@ -1,5 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
-console.log("API_URL is:", API_URL);
+const API_URL = "https://timetracker-the-second-j4byk.ondigitalocean.app/api";
 
 export const fetchCategorys = async () => {
   try {
