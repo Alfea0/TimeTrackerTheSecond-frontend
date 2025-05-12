@@ -52,7 +52,7 @@ body {
   }
   
   li {
-    display: flex;
+    display: fixed;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
@@ -73,11 +73,10 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 0.8rem;
-    background-color: #7e8fec;
+    background-color: #f5a63e;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-    float: right;
   }
   
   button:hover {
